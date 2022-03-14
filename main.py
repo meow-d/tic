@@ -6,24 +6,22 @@ def main():
     data = [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]]
     seperator = "\n ───┼───┼───\n"
     is_first_players_turn = False
-    game_started = True
     chosen_coordinates = 0
 
-    print_block(data, seperator)
+    while True:
+        winner = check_for_winner(data, is_first_players_turn)
+        if winner:
+            print_with_colours(f"the winner is {current_turn_symbol}!", "\u001b[36;1m")
+            break
 
-    while game_started:
+        print_block(data, seperator)
+
         chosen_coordinates = ask_for_input(data)
 
         current_turn_symbol = "x" if is_first_players_turn else "o"
         data[chosen_coordinates[0]][chosen_coordinates[1]] = current_turn_symbol
-        print_block(data, seperator)
 
         is_first_players_turn = not is_first_players_turn
-
-        winner = check_for_winner(data, is_first_players_turn)
-        if winner:
-            game_started = False
-            print_with_colours(f"the winner is {current_turn_symbol}!", "\u001b[36;1m")
 
 
 def print_block(data, seperator):
