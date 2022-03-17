@@ -68,7 +68,6 @@ def main():
         chosen_coordinates = ask_for_input(window, data)
 
         # Quit game if q is pressed
-        # ? a better way to do this
         if chosen_coordinates is None:
             game_running = False
             break
@@ -172,6 +171,7 @@ def check_for_winner_vertically(data):
         if column[0] == column[1] == column[2]:
             return True
 
+    # Diagonally
     if data[0][0] == data[1][1] == data[2][2]:
         return True
 
